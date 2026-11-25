@@ -30,16 +30,30 @@ async function api(path, { method = 'GET', json, raw, ctype, query = {} } = {}) 
 }
 
 // ---------------------------------------------------------------- sessão
+function showSetup(vpsOk) {
+  $('ai-login').hidden = true; $('ai-app').hidden = true;
+  const box = $('ai-setup'); box.hidden = false; box.replaceChildren(
+    h('h3', {}, 'A Cyber Hunt AI ainda não foi configurada neste deploy'),
+    h('p', {}, 'O site e o scanner funcionam normalmente. A área de IA precisa de quatro variáveis de ambiente no projeto da Vercel (Settings → Environment Variables) e de um novo deploy:'),
+    h('ol', {},
+      h('li', {}, h('code', {}, 'AUTH_PASSWORD_HASH'), ' e ', h('code', {}, 'SESSION_SECRET'), ' — gere com ', h('code', {}, 'npm run hash-password')),
+      h('li', {}, h('code', {}, 'VPS_URL'), ' — endereço HTTPS da API na sua VPS', vpsOk ? ' (já definido)' : ''),
+      h('li', {}, h('code', {}, 'VPS_TOKEN'), ' — o valor de CHAI_API_TOKEN da VPS', vpsOk ? ' (já definido)' : '')),
+    h('p', { class: 'muted' }, 'Passo a passo completo no README do repositório.'));
+  setStatus('Configuração pendente na Vercel.', 'warn');
+}
+
 function showLogin() { $('ai-login').hidden = false; $('ai-app').hidden = true; setStatus('Área privada: faça login.', 'warn'); }
 
 async function checkSession() {
   try {
     const r = await fetch('/api/auth', { credentials: 'same-origin' });
     if (!r.ok) throw new Error();
-    const { authenticated } = await r.json();
+    const { authenticated, configured, vps_configured: vpsOk } = await r.json();
+    if (configured === false) return showSetup(vpsOk);
     if (authenticated) await enter(); else showLogin();
   } catch {
-    setStatus('Backend do Vercel indisponível. Em servidor estático local, a Cyber Hunt AI não funciona: o scanner continua disponível.', 'bad');
+    setStatus('As funções /api não responderam. Fora da Vercel use npm run dev; o scanner continua disponível.', 'bad');
   }
 }
 

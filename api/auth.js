@@ -13,7 +13,14 @@ async function readJson(req, limit = 4096) {
 
 export default async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
-  if (req.method === 'GET') return res.status(200).json({ authenticated: isAuthenticated(req) });
+  if (req.method === 'GET') {
+    const env = process.env;
+    return res.status(200).json({
+      authenticated: isAuthenticated(req),
+      configured: Boolean(env.AUTH_PASSWORD_HASH && env.SESSION_SECRET),
+      vps_configured: Boolean(env.VPS_URL && env.VPS_TOKEN),
+    });
+  }
   if (!sameOrigin(req)) return res.status(403).json({ error: 'origem não permitida' });
   if (req.method === 'DELETE') {
     res.setHeader('Set-Cookie', sessionCookie('', 0));
