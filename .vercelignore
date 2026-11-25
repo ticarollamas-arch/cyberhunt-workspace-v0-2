@@ -1,0 +1,7 @@
+vps/
+tests/
+scripts/
+knowledge/
+docs/
+*.zip
+.env*

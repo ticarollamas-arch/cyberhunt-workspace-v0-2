@@ -1,0 +1,17 @@
+{
+  "_about": "Manifesto de fontes oficiais para a base de conhecimento. Nada aqui está pré-verificado: o script vps/scripts/ingest_sources.py baixa cada URL, registra status HTTP, data de coleta e SHA-256, e ignora o que não responder 200. Coleções separadas impedem misturar políticas de plataformas diferentes.",
+  "sources": [
+    {"collection": "google-vrp", "kind": "policy", "url": "https://raw.githubusercontent.com/google/bughunters/main/patch-rewards-program/scope.md", "note": "Escopo do Patch Rewards (versão bruta do arquivo indicado em github.com/google/bughunters)"},
+    {"collection": "google-vrp", "kind": "policy", "url": "https://raw.githubusercontent.com/google/bughunters/main/README.md", "note": "README do repositório de regras do Google Bug Hunters"},
+    {"collection": "google-vrp", "kind": "policy", "url": "https://bughunters.google.com/about/rules", "note": "Página pública; pode ser renderizada por JavaScript e vir vazia — nesse caso importe manualmente o texto"},
+    {"collection": "owasp", "kind": "doc", "url": "https://owasp.org/www-project-top-ten/"},
+    {"collection": "owasp", "kind": "doc", "url": "https://owasp.org/www-project-api-security/"},
+    {"collection": "owasp", "kind": "doc", "url": "https://owasp.org/www-project-application-security-verification-standard/"},
+    {"collection": "cvss", "kind": "doc", "url": "https://www.first.org/cvss/"},
+    {"collection": "cve", "kind": "doc", "url": "https://www.cve.org/About/Overview"},
+    {"collection": "osv", "kind": "doc", "url": "https://google.github.io/osv-scanner/"},
+    {"collection": "hackerone", "kind": "policy", "url": "https://docs.hackerone.com/"},
+    {"collection": "bugcrowd", "kind": "policy", "url": "https://docs.bugcrowd.com/"},
+    {"collection": "oss-fuzz", "kind": "doc", "url": "https://raw.githubusercontent.com/google/oss-fuzz/master/README.md"}
+  ]
+}

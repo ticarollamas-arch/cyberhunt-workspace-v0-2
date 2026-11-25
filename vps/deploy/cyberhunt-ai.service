@@ -1,0 +1,25 @@
+[Unit]
+Description=Cyber Hunt AI (API privada)
+After=network-online.target ollama.service
+Wants=ollama.service
+
+[Service]
+User=cyberhunt
+Group=cyberhunt
+EnvironmentFile=/etc/cyberhunt-ai.env
+WorkingDirectory=/opt/cyberhunt-ai/vps
+ExecStart=/opt/cyberhunt-ai/venv/bin/uvicorn cyberhunt_ai.api.server:create_app --factory --host 127.0.0.1 --port 8765 --workers 1
+Restart=on-failure
+# Isolamento: sem privilégios, sistema de arquivos somente leitura exceto dados.
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ReadWritePaths=/var/lib/cyberhunt-ai
+CapabilityBoundingSet=
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+MemoryMax=1500M
+
+[Install]
+WantedBy=multi-user.target

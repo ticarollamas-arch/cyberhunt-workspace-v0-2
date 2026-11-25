@@ -1,0 +1,14 @@
+{
+  "name": "cyberhunt-workspace",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "test:py": "cd vps && PYTHONPATH=.:tests python3 -m unittest discover -s tests",
+    "hash-password": "node scripts/hash-password.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
