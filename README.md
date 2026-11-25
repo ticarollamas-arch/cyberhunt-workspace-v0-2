@@ -1,4 +1,6 @@
-# Cyber Hunt Lab — Workspace v0.2 + Cyber Hunt AI
+<p align="center"><img src="assets/banner.svg" alt="CyberHuntLab Workspace — pesquisa de segurança com IA local verificada" width="100%"></p>
+
+# CyberHuntLab Workspace v0.2 + Cyber Hunt AI
 
 Ambiente independente de pesquisa de segurança, revisão defensiva de código e aprendizado. Sem afiliação ao Google.
 
@@ -77,7 +79,8 @@ Voz (opcional): compile whisper.cpp e baixe um modelo `ggml-small.bin`; instale 
 ### 2. Vercel
 1. `node scripts/hash-password.mjs` → gera `AUTH_PASSWORD_HASH` e `SESSION_SECRET`.
 2. Variáveis no projeto Vercel: `AUTH_PASSWORD_HASH`, `SESSION_SECRET`, `VPS_URL` (ex.: `https://ai.cyberhuntlab.com.br`), `VPS_TOKEN` (o `CHAI_API_TOKEN` da VPS).
-3. Framework Preset: Other; sem build; Output Directory `.`. `.vercelignore` impede publicar `vps/`, `tests/` e `scripts/`.
+3. Framework Preset: **Other**; Build Command e Output Directory **vazios** (o `vercel.json` já define). `.vercelignore` impede publicar `vps/`, `tests/` e `scripts/`.
+   Sem as variáveis, o site e o scanner funcionam e a aba Cyber Hunt AI mostra a lista do que falta configurar.
 4. O limite de corpo das funções do Vercel (~4,5 MB) limita uploads; `maxDuration` de 300 s depende do seu plano.
 
 ### Desenvolvimento local
