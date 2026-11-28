@@ -2,6 +2,10 @@
 
 # CyberHuntLab Workspace v0.2 + Cyber Hunt AI
 
+<!-- vercel-demo:start -->
+<p align="center"><a href="https://cyberhunt-workspace-v0-2.vercel.app"><img src="https://img.shields.io/badge/Abrir_o_site-cyberhunt--workspace--v0--2.vercel.app-22D3EE?logo=vercel&logoColor=white&labelColor=0B1220" alt="Abrir o site cyberhunt-workspace-v0-2.vercel.app"></a></p>
+<!-- vercel-demo:end -->
+
 Ambiente independente de pesquisa de segurança, revisão defensiva de código e aprendizado. Sem afiliação ao Google.
 
 A versão 0.2 preserva o workspace original (scanner, fontes, patch & relatório, gerador de perguntas) e acrescenta a **Cyber Hunt AI**: área de estudo privada com um modelo de linguagem de pesos abertos rodando na sua VPS, **sem API comercial de IA**, com verificação anti-alucinação independente do modelo.
